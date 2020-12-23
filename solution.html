@@ -10,19 +10,8 @@
     <script src="https://npmcdn.com/aframe-layout-component@3.0.1"></script>
     <script src="https://npmcdn.com/aframe-template-component@3.1.1"></script>
     <script src="components/set-image.js"></script>
-  </head>
+  </head> 
   
-  <script>
-    AFRAME.registerComponent('click-listener', {
-      init: function () {
-        // Listen for click event
-        this.el.addEventListener('click', function (evt) {          
-          //console.log("cursor clicked on ", this.id);
-        });        
-      }
-    });
-  </script>
-      
   <body>   
     <a-scene>
       <a-assets>
@@ -36,7 +25,7 @@
 
         <!-- Image link template to be reused. -->
         <script id="link" type="text/html">
-          <a-entity class="link clickable"
+          <a-entity class="link"
             geometry="primitive: plane; height: 1; width: 1"
             material="shader: flat; src: ${thumb}"
             event-set__1="_event: mousedown; scale: 1 1 1"
@@ -45,18 +34,15 @@
             event-set__4="_event: mouseleave; scale: 1 1 1"
             set-image="on: click; target: #image-360; src: ${src}"
             sound="on: click; src: #click-sound"></a-entity>
-            click-listener
         </script>
       </a-assets>
-
-      <a-entity id="mouseCursor" cursor="rayOrigin: mouse" raycaster="objects: .clickable"></a-entity>
       
       <!-- 360-degree image. -->
       <a-sky id="image-360" radius="10" src="#city"></a-sky>
 
       <!-- Image links. -->
       <a-entity id="links" layout="type: line; margin: 1.5" position="0 -1 -4">
-        <a-entity template="src: #link" data-src="#cubes" data-thumb="#cubes-thumb" click-listener></a-entity>
+        <a-entity template="src: #link" data-src="#cubes" data-thumb="#cubes-thumb"></a-entity>
         <a-entity template="src: #link" data-src="#city" data-thumb="#city-thumb"></a-entity>
         <a-entity template="src: #link" data-src="#sechelt" data-thumb="#sechelt-thumb"></a-entity>
       </a-entity>
